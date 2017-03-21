@@ -1,0 +1,8 @@
+{
+	"name": "electrontest",
+	"version": "1.0.0",
+	"main": "main.js",
+	"author": "GitHub",
+	"description": "A minimal Electron application"
+
+}
