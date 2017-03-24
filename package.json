@@ -1,34 +1,29 @@
 {
-  "name": "electrontest",
-  "version": "1.0.0",
-  "description": "A minimal Electron application",
-  "main": "app/main.js",
-  "scripts": {
-    "postinstall": "install-app-deps",
-    "start": "electron ./app --enable-logging",
-    "dev": "NODE_ENV='development' npm run start",
-    "dist": "build -w --x64 --ia32"
-  },
-  "repository": "https://github.com/electron/electron-quick-start",
-  "keywords": [
-    "Electron",
-    "quick",
-    "start",
-    "tutorial",
-    "demo"
-  ],
-  "author": "GitHub",
-  "license": "CC0-1.0",
-  "devDependencies": {
-    "electron": "^1.4.1",
-    "electron-builder": "^15.6.3",
-    "electron-prebuilt": "^1.4.13"
-  },
-  "build": {
-    "appId": "hr.creaticon.eatodo",
-    "dmg": {}
-  },
-  "dependencies": {
-
-  }
+	"name": "electrontest",
+	"version": "1.0.0",
+	"description": "A minimal Electron application",
+	"main": "app/main.js",
+	"scripts": {
+		"postinstall": "install-app-deps",
+		"start": "electron ./app --enable-logging",
+		"dev": "NODE_ENV='development' npm run start",
+		"dist": "build -m  --ia32"
+	},
+	"repository": "https://github.com/paxal78/electron-test",
+	"author": "GitHub",
+	"license": "CC0-1.0",
+	"devDependencies": {
+		"electron": "^1.4.1",
+		"electron-builder": "^15.6.3",
+		"electron-prebuilt": "^1.4.13",
+		"electron-publisher-s3": "^16.1.0",
+		"electron-rebuild": "^1.5.7"
+	},
+	"build": {
+		"appId": "electron.test",
+		"forceCodeSigning": false
+	},
+	"dependencies": {
+		"electron-updater": "^1.10.4"
+	}
 }

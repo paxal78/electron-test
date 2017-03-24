@@ -3,6 +3,8 @@
 	"version": "1.0.0",
 	"main": "main.js",
 	"author": "GitHub",
-	"description": "A minimal Electron application"
-
+	"description": "A minimal Electron application",
+	"dependencies": {
+		"electron-updater": "^1.10.4"
+	}
 }

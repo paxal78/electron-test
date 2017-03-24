@@ -1,29 +1,18 @@
 const electron = require('electron')
 	// Module to control application life.
 const app = electron.app
-	// Module to create native browser window.
+const os = require('os');
+// Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow
 
 const path = require('path')
 const url = require('url')
 const autoUpdater = require("electron-updater").autoUpdater
+const {
+	dialog
+} = require('electron')
 
-autoUpdater.addListener("update-available", function(event) {
-	console.warn('update-available');
-});
-autoUpdater.addListener("update-downloaded", function(event, releaseNotes, releaseName, releaseDate, updateURL) {
-	console.warn('update-downloaded');
-});
-autoUpdater.addListener("error", function(error) {
-	console.warn('update-error');
-});
-autoUpdater.addListener("checking-for-update", function(event) {
-	console.warn('checking-for-update');
-});
-autoUpdater.addListener("update-not-available", function(event) {
-	console.warn('update-not-available');
-});
-autoUpdater.checkForUpdates();
+
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -52,7 +41,47 @@ function createWindow() {
 		// in an array if your app supports multi windows, this is the time
 		// when you should delete the corresponding element.
 		mainWindow = null
-	})
+	});
+	autoUpdater.addListener("update-available", function(event) {
+		dialog.showMessageBox({
+			type: 'info',
+			title: 'Found Updates',
+			message: 'Found updates, do you want update now?',
+			buttons: ['Sure', 'No']
+		}, (buttonIndex) => {
+			if (buttonIndex === 0) {
+				autoUpdater.downloadUpdate()
+			} else {
+				updater.enabled = true
+				updater = null
+			}
+		})
+
+	});
+	autoUpdater.addListener("update-downloaded", function(event, releaseNotes, releaseName, releaseDate, updateURL) {
+		dialog.showMessageBox({
+			title: 'Install Updates',
+			message: 'Updates downloaded, application will be quit for update...'
+		}, () => {
+			autoUpdater.quitAndInstall();
+		});
+	});
+	autoUpdater.addListener("error", function(error) {
+		console.error(error);
+	});
+
+	autoUpdater.addListener("update-not-available", function(event) {
+		dialog.showMessageBox({
+			title: 'No Updates',
+			message: 'Current version is up-to-date.'
+		})
+	});
+
+	autoUpdater.setFeedURL('http://0.0.0.0:8080');
+
+
+	autoUpdater.checkForUpdates();
+
 }
 
 // This method will be called when Electron has finished
