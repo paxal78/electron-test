@@ -13,7 +13,7 @@
 	"author": "GitHub",
 	"license": "CC0-1.0",
 	"devDependencies": {
-		"electron": "^1.4.1",
+		"electron": "^9.1.0",
 		"electron-builder": "^15.6.3",
 		"electron-prebuilt": "^1.4.13",
 		"electron-publisher-s3": "^16.1.0",
